@@ -7,6 +7,10 @@ These scripts:
 - Embed quicktime location and date metadata to videos (for better apple support)
 - Export all to an output directory. 
 
+## Usage
+
+`python3 main.py memories_history.json <threads>`
+
 ## Works on
 The metadata stuff is a bit iffy, since I don't have access to any macOS device. \
 - The metadata is properly embedded and viewable on Ubuntu 2404.
