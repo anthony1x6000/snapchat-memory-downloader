@@ -33,3 +33,6 @@ Input your `memories_history.json`, the number of threads (concurrent downloads 
 - After adding the overlay, if applicable:
     - `metadata.py` is used to add the date and lat, lon coordinates (location) to the metadata of the image or video. 
 - The script is done. 
+
+
+```Merry Christmas :)```
