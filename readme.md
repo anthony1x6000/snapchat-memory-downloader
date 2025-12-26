@@ -12,7 +12,7 @@ These scripts:
 `python3 main.py memories_history.json <threads>`
 
 ## Works on
-The metadata stuff is a bit iffy, since I don't have access to any macOS device. \
+The metadata stuff is a bit iffy, since I don't have access to any macOS device.
 - The metadata is properly embedded and viewable on Ubuntu 2404.
 - When images are saved to gallery via a web browser (e.g. upload a memory to a file hosting site, downloading that to iOS device) location and date metadata are properly stored.
 - When videos are saved to gallery via a cloud hosting service such as Filen, the location and date metadata are properly stored. 
