@@ -8,7 +8,7 @@ def embed_mp4_location(video_path, lat, lon): # path, lat as float like 80.000, 
 
     try:
         cmd = [
-            'exiftool',
+            './exiftool',
             '-overwrite_original',
             f'-Keys:GPSCoordinates={location_arg}',
             f'-QuickTime:GPSCoordinates={location_arg}',
@@ -30,7 +30,7 @@ def embed_mp4_location(video_path, lat, lon): # path, lat as float like 80.000, 
 def embed_mp4_date(video_path, date_string):
     try:
         cmd = [
-            'exiftool',
+            './exiftool',
             '-overwrite_original',
             f'-AllDates={date_string}',
             video_path
@@ -49,7 +49,7 @@ def embed_mp4_date(video_path, date_string):
 def embed_jpg_location(image_path, lat, lon):
     try:
         cmd = [
-            'exiftool',
+            './exiftool',
             '-overwrite_original',
             f'-GPSLatitude={lat}',
             f'-GPSLongitude={lon}',
@@ -70,7 +70,7 @@ def embed_jpg_location(image_path, lat, lon):
 def embed_jpg_date(image_path, date_string):
     try:
         cmd = [
-            'exiftool',
+            './exiftool',
             '-overwrite_original',
             f'-AllDates={date_string}', # https://exiftool.org/TagNames/Shortcuts.html
             image_path
