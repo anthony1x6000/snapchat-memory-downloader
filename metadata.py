@@ -83,3 +83,11 @@ def embed_jpg_date(image_path, date_string):
         print(f"Error: Failed to embed date. ExifTool returned {e.returncode}.")
     except FileNotFoundError:
         print("Error: 'exiftool' command not found. Please install ExifTool.")
+
+def set_modification_date(merged_path):
+        cmd = [
+            EXIFTOOL_LOCATION,
+            '-FileModifyDate<DateTimeOriginal',
+            merged_path
+        ]
+        subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)

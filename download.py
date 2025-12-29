@@ -93,27 +93,29 @@ if __name__ == "__main__":
                 print(f"    Downloaded to {downloaded_path}")
                 
                 determined_type = determine_media_type(downloaded_path)
+                debug(f"            Date: {date} Lat: {lat} Lon: {lon}")
 
                 if determined_type == "ZIP":
                     merged_path = merge_files(unzip_file(downloaded_path, tempUnzipDir))
                     if merged_path.endswith(".mp4"):   
                         embed_mp4_location(merged_path, float(lat), float(lon))
                         embed_mp4_date(merged_path, date)
+                        set_modification_date(merged_path)
                     elif merged_path.endswith(".jpg") or merged_path.endswith(".jpeg"):
-                        debug(f"            Date: {date} Lat: {lat} Lon: {lon}")
                         embed_jpg_date(merged_path, date)
                         embed_jpg_location(merged_path, float(lat), float(lon))
-
+                        set_modification_date(merged_path)
                     print(f"            Successfully processed ZIP: {download_url}")
                     
                 elif determined_type in ["IMAGE", "VIDEO"]:
                     if determined_type == "VIDEO":
                         embed_mp4_date(downloaded_path, date)
                         embed_mp4_location(downloaded_path, float(lat), float(lon))
+                        set_modification_date(merged_path)
                     elif determined_type == "IMAGE":
-                        debug(f"            Date: {date} Lat: {lat} Lon: {lon}")
                         embed_jpg_date(downloaded_path, date)
                         embed_jpg_location(downloaded_path, float(lat), float(lon))
+                        set_modification_date(merged_path)
                     print(f"            Successfully processed {determined_type}: {download_url}")
                 
                 mark_file_processed(sid)
