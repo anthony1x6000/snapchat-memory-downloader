@@ -3,12 +3,14 @@ import os
 
 # Uses exiftool for metadata
 
+EXIFTOOL_LOCATION = 'exiftool' # Assuming in PATH, otherwise, ./exiftool if program INCLUDING lib is in root dir of this script. 
+
 def embed_mp4_location(video_path, lat, lon): # path, lat as float like 80.000, lon as float like -80.000 
     location_arg = f"{lat}, {lon}"
 
     try:
         cmd = [
-            './exiftool',
+            EXIFTOOL_LOCATION,
             '-overwrite_original',
             f'-Keys:GPSCoordinates={location_arg}',
             f'-QuickTime:GPSCoordinates={location_arg}',
@@ -30,12 +32,13 @@ def embed_mp4_location(video_path, lat, lon): # path, lat as float like 80.000, 
 def embed_mp4_date(video_path, date_string):
     try:
         cmd = [
-            './exiftool',
+            EXIFTOOL_LOCATION,
             '-overwrite_original',
             f'-AllDates={date_string}',
+            f'-DateTimeOriginal={date_string}',
             video_path
         ]
-        
+
         subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         print(f"                Date {date_string} embedded in {video_path}")
 
@@ -49,7 +52,7 @@ def embed_mp4_date(video_path, date_string):
 def embed_jpg_location(image_path, lat, lon):
     try:
         cmd = [
-            './exiftool',
+            EXIFTOOL_LOCATION,
             '-overwrite_original',
             f'-GPSLatitude={lat}',
             f'-GPSLongitude={lon}',
@@ -66,16 +69,16 @@ def embed_jpg_location(image_path, lat, lon):
     except FileNotFoundError:
         print("Error: 'exiftool' command not found. Please install ExifTool.")
 
-
 def embed_jpg_date(image_path, date_string):
     try:
         cmd = [
-            './exiftool',
+            EXIFTOOL_LOCATION,
             '-overwrite_original',
-            f'-AllDates={date_string}', # https://exiftool.org/TagNames/Shortcuts.html
+            f'-AllDates={date_string}', # https://exiftool.org/TagNames/Shortcuts.html,
+            f'-DateTimeOriginal={date_string}',
             image_path
         ]
-        
+       
         subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         print(f"                Embedded date {date_string} into {image_path}")
 
