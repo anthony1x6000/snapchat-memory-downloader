@@ -5,6 +5,24 @@ import subprocess  # Added for process management
 
 DEBUG = False
 
+def clean_up(thread_data):
+    remove_dir(thread_data)
+    # Clean up temporary audio files
+    for file in os.listdir('.'):
+        if file.startswith('temp-audio-') and file.endswith('.m4a'):
+            try:
+                os.remove(file)
+            except OSError:
+                pass
+    # Clean up temporary thread files
+    for file in os.listdir('.'):
+        if file.startswith('thread_temp_thread_') and os.path.isdir(file):
+            try:
+                remove_dir(file)
+            except OSError:
+                pass
+
+
 def debug(string):
     if DEBUG:
         print(string)
@@ -74,6 +92,7 @@ def run_downloaders(num_threads, output_dir):
                 # p.kill() # pkill 
                 print(f"Terminated {p.pid}")
         print("Stopped all threads")
+        clean_up(thread_data="thread_data")
         sys.exit(1)
 
 if __name__ == "__main__":
@@ -104,13 +123,6 @@ if __name__ == "__main__":
     else:
         print("No media found to process.")
 
-    remove_dir(thread_data)
-    # Clean up temporary audio files
-    for file in os.listdir('.'):
-        if file.startswith('temp-audio-') and file.endswith('.m4a'):
-            try:
-                os.remove(file)
-            except OSError:
-                pass
+    clean_up(thread_data)
 
     print("Done.")
