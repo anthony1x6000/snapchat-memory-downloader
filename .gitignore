@@ -4,6 +4,6 @@ output
 __pycache__/
 log.txt
 processed_files.db
-test.sh
 thread_data/
 thread_temp*
+.venv/

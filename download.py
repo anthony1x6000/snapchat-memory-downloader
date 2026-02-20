@@ -117,11 +117,11 @@ if __name__ == "__main__":
                     if determined_type == "VIDEO":
                         embed_mp4_date(downloaded_path, date)
                         embed_mp4_location(downloaded_path, float(lat), float(lon))
-                        set_modification_date(merged_path)
+                        set_modification_date(downloaded_path)
                     elif determined_type == "IMAGE":
                         embed_jpg_date(downloaded_path, date)
                         embed_jpg_location(downloaded_path, float(lat), float(lon))
-                        set_modification_date(merged_path)
+                        set_modification_date(downloaded_path)
                     print(f"            Successfully processed {determined_type}: {download_url}")
 
                 else: # There may be other types

@@ -34,6 +34,10 @@ Input your `memories_history.json`, the number of threads (concurrent downloads 
     - `metadata.py` is used to add the date and lat, lon coordinates (location) to the metadata of the image or video. 
 - The script is done. 
 
+# Using venv
+- `python3 -m venv .venv`
+- `source .venv/bin/activate`
+
 # Requirements
 - pypi packages Pillow and moviepy
 - [exiftool](https://exiftool.org/)
