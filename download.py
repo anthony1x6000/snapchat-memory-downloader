@@ -122,6 +122,10 @@ if __name__ == "__main__":
                         embed_jpg_date(downloaded_path, date)
                         embed_jpg_location(downloaded_path, float(lat), float(lon))
                         set_modification_date(downloaded_path)
+                    
+                    final_path = os.path.join(get_output_dir(), os.path.basename(downloaded_path))
+                    shutil.move(downloaded_path, final_path) # move to output
+
                     print(f"            Successfully processed {determined_type}: {download_url}")
 
                 else: # There may be other types
