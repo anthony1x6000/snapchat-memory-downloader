@@ -40,6 +40,12 @@ def get_temp_dir(thread_number):
         os.makedirs(temp_dir)
     return temp_dir
 
+def get_rejects_dir():
+    rejects_dir = "rejects"
+    if not os.path.exists(rejects_dir):
+        os.makedirs(rejects_dir, exist_ok=True)
+    return rejects_dir
+
 def download_file_urllib(url, output_dir="."):
     try:
         with urllib.request.urlopen(url) as response:
@@ -117,6 +123,13 @@ if __name__ == "__main__":
                         embed_jpg_location(downloaded_path, float(lat), float(lon))
                         set_modification_date(merged_path)
                     print(f"            Successfully processed {determined_type}: {download_url}")
+
+                else: # There may be other types
+                    rejects_dir = get_rejects_dir()
+                    filename = os.path.basename(downloaded_path)
+                    rejects_path = os.path.join(rejects_dir, filename)
+                    shutil.move(downloaded_path, rejects_path)
+                    print(f"            Unexpected extension. Moved to {rejects_path}")
                 
                 mark_file_processed(sid)
 
