@@ -82,6 +82,8 @@ def unzip_file(zip_path, extract_to):
     return [os.path.join(extract_to, f) for f in os.listdir(extract_to)]
 
 def determine_media_type(filename):
+    if not filename:
+        return 'Unknown'
     if filename.lower().endswith((".jpg", ".jpeg")):
         return 'IMAGE'
     elif filename.lower().endswith(".mp4"):
